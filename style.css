@@ -1,1 +1,136 @@
 
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&display=swap');
+
+:root {
+  --bg: #050505;
+  --green: #7CFF7C;
+  --green-dim: #3a5a3a;
+  --red-glitch: #ff003c;
+  --cyan-glitch: #00f0ff;
+}
+
+* { margin:0; padding:0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--green);
+  font-family: 'JetBrains Mono', monospace;
+  overflow-x: hidden;
+  background-image: 
+    repeating-linear-gradient(0deg, rgba(124,255,124,0.03) 0px, transparent 2px);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  border-bottom: 1px dashed var(--green-dim);
+  text-transform: uppercase;
+}
+
+.logo {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-shadow: 3px 0 var(--red-glitch), -3px 0 var(--cyan-glitch);
+  animation: glitch 1.5s infinite;
+}
+
+nav { font-size: 0.9rem; letter-spacing: 1px; opacity: 0.8; }
+
+.hero {
+  padding: 80px 40px 40px;
+  max-width: 1200px;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  line-height: 0.9;
+  font-weight: 800;
+  color: var(--green);
+  text-shadow: 4px 0 var(--red-glitch), -4px 0 var(--cyan-glitch);
+  margin-bottom: 20px;
+}
+
+.hero p { opacity: 0.7; margin-bottom: 30px; }
+
+.terminal {
+  background: #000;
+  border: 1px solid var(--green);
+  box-shadow: 0 0 15px rgba(124,255,124,0.3);
+  padding: 20px;
+  max-width: 600px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  position: relative;
+}
+
+.terminal::before {
+  content: "root@tor-anonimous:~$ _";
+  display: block;
+  border-bottom: 1px solid var(--green-dim);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  opacity: 0.8;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 40px;
+}
+
+.card {
+  border: 1px solid var(--green-dim);
+  padding: 20px;
+  background: rgba(124,255,124,0.02);
+  min-height: 150px;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.card:hover {
+  border-color: var(--green);
+  box-shadow: 0 0 20px rgba(124,255,124,0.2);
+  transform: translate(-2px, -2px);
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border: 1px solid var(--green);
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  font-size: 0.75rem;
+  opacity: 0.5;
+  border-top: 1px dashed var(--green-dim);
+  margin-top: 40px;
+}
+
+@keyframes glitch {
+  0% { text-shadow: 3px 0 var(--red-glitch), -3px 0 var(--cyan-glitch); }
+  20% { text-shadow: -3px 0 var(--red-glitch), 3px 0 var(--cyan-glitch); }
+  40% { text-shadow: 2px 0 var(--red-glitch), -2px 0 var(--cyan-glitch); }
+  60% { text-shadow: -1px 0 var(--red-glitch), 1px 0 var(--cyan-glitch); }
+  80% { text-shadow: 1px 0 var(--red-glitch), -1px 0 var(--cyan-glitch); }
+  100% { text-shadow: 3px 0 var(--red-glitch), -3px 0 var(--cyan-glitch); }
+}
+
+/* Scanlines */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,0,0.03) 3px);
+  pointer-events: none;
+  z-index: 999;
+  }
